@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+using namespace std;
+
 const uint64_t ranks[8] = {
 
     0x00000000000000FF,
