@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int pieceChessBoardValue [Row][Column] =
+const int pieceChessBoardValue [8][8] =
 {
 // PAWN
 {
