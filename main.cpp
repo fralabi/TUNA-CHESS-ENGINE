@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#include "board.h"
-#include "bitboard.h"
+#include "board.hpp"
+#include "bitboard.hpp"
 
 using namespace std;
 
