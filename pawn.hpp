@@ -80,16 +80,16 @@ int validPawnMoveWhite (ChessBoard &chessboard) {
     for (int i=2; i<=6; i++) {
        int value = intermediateRank(chessboard, chessboard.WhitePawns & rank[i]);
        if (value > bestValue) {
-        value = temp;
+            bestValue = value;
        }
     }
 
     int value = promotionWhite(chessboard, chessboard.WhitePawns & rank[7]);
     if (value > bestValue) {
-        value = temp;
+            bestValue = value;
        }
 
-       return value;
+    return bestValue;
 }
 
 int validPawnMoveBlack (ChessBoard &chessboard) {    
