@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include "bitboard.hpp"
 #include "board.hpp"
 
 using namespace std;
@@ -100,11 +99,9 @@ Bitboard pawnMove (Bitboard bitboard, int square, int color) {
 
         //NORD NORD if SQUARE is on 2nd RANK
 
-        printBitboard(pawn & ranks[7]);
-        printBitboard(ranks[]);
-
-        if ((pawn & ranks[1]) >> 16) {
-            move |= (pawn & ranks[1] >> 16);
+        //CONTROLLO SUL FATTO CHE SIA IN SECONDA RIGA E CHE LA CASELLA DAVANTI SIA LIBERA
+        if ((pawn & ranks[1]) > 0 && ((square+8) & 1) == 0) {
+            move |= (pawn >> 16);
         }
 
     }
@@ -127,8 +124,8 @@ Bitboard pawnMove (Bitboard bitboard, int square, int color) {
 
 int main() {
     Bitboard bitboard = 0ULL;
-    set_bit(bitboard, d4);
-    Bitboard result = pawnMove(bitboard, d2, 0);
+    set_bit(bitboard, c5);
+    Bitboard result = pawnMove(bitboard, d4, 0);
 
     printBitboard(result);
 
