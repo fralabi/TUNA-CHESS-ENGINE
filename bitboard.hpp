@@ -9,6 +9,9 @@ typedef long long unsigned int Bitboard;
 #define set_bit(bitboard, square) (bitboard |= (1ULL << square))
 #define pop_bit(bitboard, square) (get_bit(bitboard, square) ? (bitboard ^= (1ULL << square)) : 0)
 
+// 1ULL << 2 -> 4  -> 100   -> c8
+// 1ULL << 4 -> 16 -> 10000 -> e8
+
 
 struct ChessBoard
 {
@@ -60,7 +63,7 @@ void printBitboard (Bitboard bitboard)
     // RANKS
     for (int rank = 0; rank < 8; rank++)
     {
-		cout << 8-rank << "  | ";
+		cout << 8-rank << "  |";
 
         // FILE
         for (int file = 0; file < 8; file++)

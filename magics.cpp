@@ -3,6 +3,7 @@
 //  BISHOP
 //  ROOK
 //  QUEEN = BISHOP | ROOK
+
 #include <bits/stdc++.h>
 #include "bitboard.hpp"
 
