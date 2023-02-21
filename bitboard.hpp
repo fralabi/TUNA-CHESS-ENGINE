@@ -2,7 +2,13 @@
 
 using namespace std;
 
-typedef uint64_t Bitboard;
+typedef long long unsigned int Bitboard;
+
+// bits manipulations
+#define get_bit(bitboard, square) (bitboard & (1ULL << square))
+#define set_bit(bitboard, square) (bitboard |= (1ULL << square))
+#define pop_bit(bitboard, square) (get_bit(bitboard, square) ? (bitboard ^= (1ULL << square)) : 0)
+
 
 struct ChessBoard
 {
