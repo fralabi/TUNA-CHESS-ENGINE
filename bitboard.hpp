@@ -53,6 +53,32 @@ void printChessBoard (ChessBoard chessboard) {
 
 }
 
+void printBitboard (Bitboard bitboard)
+{
+    cout << "   +---+---+---+---+---+---+---+---+" << endl;
+    
+    // RANKS
+    for (int rank = 0; rank < 8; rank++)
+    {
+		cout << 8-rank << "  | ";
+
+        // FILE
+        for (int file = 0; file < 8; file++)
+        {
+            
+            // print bit indexed by board square
+			      cout << " " << (get_bit(bitboard, rank * 8 + file) ? "X |" : "  |");
+        }
+        
+        cout << endl << "   +---+---+---+---+---+---+---+---+" << endl;
+    }
+    
+    // print files
+    cout << "     a   b   c   d   e   f   g   h  " << endl;
+    
+    cout << "\nBITBOARD VALUE: " << bitboard << endl << endl;
+}
+
 void initializeChessBoard (ChessBoard &chessboard) {
 
 	chessboard.WhitePawns 	= 0x000000000000FF00;

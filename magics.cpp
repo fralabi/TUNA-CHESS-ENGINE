@@ -1,5 +1,8 @@
 //https://github.com/maksimKorzh/chess_programming/blob/master/src/magics/magics.c
 
+//  BISHOP
+//  ROOK
+//  QUEEN = BISHOP | ROOK
 #include <bits/stdc++.h>
 #include "bitboard.hpp"
 
@@ -178,7 +181,7 @@ Bitboard mask_bishop_attacks(int square)
 /// ----------------------------- DA CAPIRE DA ORA IN POI -----------------------------
 
 // just a random number
-unsigned int state = 1804289383;
+unsigned int state = 1809086573;
 
 // 32-bit number pseudo random generator
 unsigned int generate_random_number()
@@ -192,7 +195,7 @@ unsigned int generate_random_number()
 	return x;
 }
 
-// generate random U64 number
+// generate random Bitboard number
 Bitboard random_U64()
 {
     // init numbers to randomize
@@ -398,7 +401,8 @@ Bitboard find_magic(int square, int relevant_bits, int bishop) {
         Bitboard magic = random_fewbits();
 
         // skip testing magic number if inappropriate
-        if(count_bits((mask_attack * magic) & 0xFF00000000000000ULL) < 6) continue;
+        if(count_bits((mask_attack * magic) & 0xFF00000000000000ULL) < 6) 
+          continue;
 
         // reset used attacks array
         memset(used_attacks, 0ULL, sizeof(used_attacks));
@@ -436,13 +440,13 @@ void init_magics()
   
   // loop over 64 board squares
   for(int square = 0; square < 64; square++)
-      printf("    0x%llxULL,\n", find_magic(square, rook_occupancy_bits[square], 0));
+      printf("    0x%llxULL,\n", find_magic(square, rook_occupancy_bits[square], rook));
   
   printf("};\n\nconst Bitboard bishop_magics[64] = {\n");
   
   // loop over 64 board squares
   for(int square = 0; square < 64; square++)
-      printf("    0x%llxULL,\n", find_magic(square, bishop_occupancy_bits[square], 1));
+      printf("    0x%llxULL,\n", find_magic(square, bishop_occupancy_bits[square], bishop));
   
   printf("};\n\n");
 }
@@ -649,32 +653,6 @@ Bitboard get_rook_attacks(int square, Bitboard occupancy) {
 	
 	// return rellevant attacks
 	return rook_attacks[square][occupancy];
-}
-
-void printBitboard (Bitboard bitboard)
-{
-    cout << "   +---+---+---+---+---+---+---+---+" << endl;
-    
-    // RANKS
-    for (int rank = 0; rank < 8; rank++)
-    {
-		cout << 8-rank << "  | ";
-
-        // FILE
-        for (int file = 0; file < 8; file++)
-        {
-            
-            // print bit indexed by board square
-			      cout << " " << (get_bit(bitboard, rank * 8 + file) ? "X |" : "  |");
-        }
-        
-        cout << endl << "   +---+---+---+---+---+---+---+---+" << endl;
-    }
-    
-    // print files
-    cout << "     a   b   c   d   e   f   g   h  " << endl;
-    
-    cout << "\nBITBOARD VALUE: " << bitboard << endl << endl;
 }
 
 int main() {

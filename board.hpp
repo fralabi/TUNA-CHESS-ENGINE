@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
+#include "bitboard.hpp"
 
 using namespace std;
 
-const uint64_t ranks[8] = {
+const Bitboard ranks[8] = {
 
     0x00000000000000FF,
     0x000000000000FF00,
@@ -14,7 +15,7 @@ const uint64_t ranks[8] = {
     0xFF00000000000000
 };
 
-const uint64_t files[8] = {
+const Bitboard files[8] = {
 
     0x0101010101010101,
     0x0202020202020202,
