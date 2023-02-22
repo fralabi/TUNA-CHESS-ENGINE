@@ -1,0 +1,13 @@
+evaluate.hpp
+Aggiornare le matrici di evaluate.hpp su cui poi calcolare la convenienza della posizione
+Implementare MinMax Algorithm
+
+pawn.hpp
+Controllo su presa EN PASSANT
+
+control.hpp
+Riconoscere la fase di ENDGAME in base al numero dei pezzi o in base ad azioni particolari
+Implementare Scacco Matto, Scacco, Patta per ripetizione
+
+uci.hpp
+Progettare un sistema di input-output delle mosse secondo standard UCI (https://en.wikipedia.org/wiki/Universal_Chess_Interface)

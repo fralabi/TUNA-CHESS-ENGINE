@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
+#include "bitboard.hpp"
 
 using namespace std;
 
-const int pieceChessBoardValue [8][8] =
+const int pieceChessBoardValue [7][8][8] =
 {
-// PAWN
+// PAWN (WHITE)
 {
 0,  0,  0,    0,    0,  0,  0,  0,
 0,  0,  0,    0,    0,  0,  0,  0,
@@ -12,7 +13,18 @@ const int pieceChessBoardValue [8][8] =
 0,  0,  0,   75,   75,  0,  0,  0,
 0,  0, 15,   75,   75, 15,  0,  0,
 0,  0,  0,   40,   40,  0,  0,  0,
-0,  0,  0, -100, -100,  0,  0,  0,
+0,  0,  0,    0,    0,  0,  0,  0,
+0,  0,  0,    0,    0,  0,  0,  0
+},
+// PAWN (BLACK)
+{
+0,  0,  0,    0,    0,  0,  0,  0,
+0,  0,  0,    0,    0,  0,  0,  0,
+0,  0,  0,   40,   40,  0,  0,  0,
+0,  0, 15,   75,   75, 15,  0,  0,
+0,  0,  0,   75,   75,  0,  0,  0,
+0,  0,  0,    0,    0,  0,  0,  0,
+0,  0,  0,    0,    0,  0,  0,  0,
 0,  0,  0,    0,    0,  0,  0,  0
 },
 // KNIGHT
@@ -86,10 +98,9 @@ const int pieceChessBoardValue [8][8] =
 };
 
 
-//MODIFICARE I VALORI
-const int pieceChessBoardValueEndGame [8][8] =
+const int pieceChessBoardValueEndGame [7][8][8] =
 {
-// PAWN
+// PAWN (WHITE)
 {
  0,  0,  0,  0,  0,  0,  0,  0,
 10, 10, 10, 10, 10, 10, 10, 10,
@@ -99,6 +110,17 @@ const int pieceChessBoardValueEndGame [8][8] =
  0,  0,  0,  0,  0,  0,  0,  0,
  0,  0,  0,  0,  0,  0,  0,  0,
  0,  0,  0,  0,  0,  0,  0,  0,
+},
+// PAWN (BLACK)
+{
+ 0,  0,  0,  0,  0,  0,  0,  0,
+ 0,  0,  0,  0,  0,  0,  0,  0,
+ 0,  0,  0,  0,  0,  0,  0,  0,
+ 0,  0,  0,  0,  0,  0,  0,  0,
+ 2,  2,  2,  2,  2,  2,  2,  2,
+ 5,  5,  5,  5,  5,  5,  5,  5,
+10, 10, 10, 10, 10, 10, 10, 10,
+ 0,  0,  0,  0,  0,  0,  0,  0
 },
 // KNIGHT
 {
@@ -156,3 +178,15 @@ const int pieceChessBoardValueEndGame [8][8] =
   0,  30,  50, 200, 200,  50,  30,   0
 }
 };
+
+//VALUTAZIONE OGGETTIVA DELLA POSIZIONE INDIPENDENTEMENTE DA CHI HA LA MOSSA
+int evaluate (ChessBoard chessboard) {
+  int white=0; black=0;
+
+  chessboard.WhitePawns;
+  chessboard.WhiteRooks;
+  chessboard.WhiteKnights;
+  chessboard.WhiteBishops;
+  chessboard.WhiteQueens;
+  chessboard.WhiteKing;
+}

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "board.hpp"
+#include "bitboard.hpp"
 
 using namespace std;
 
@@ -44,47 +44,48 @@ Bitboard knightMove(Bitboard bitboard, int square) {
     Bitboard knight = 0ULL;
     set_bit(knight, square);
 
-    if (knight >> 17 & ~ranks[0] & ~ranks[1] & ~files[7] & ~files[6]) {
+    //NORD NORD OVEST
+    if (knight >> 17 & ~ranks[0] & ~ranks[1] & ~files[7]) {
         move |= (knight >> 17);
     }
-
-    if (knight >> 15 & ~ranks[0] & ~ranks[1] & ~files[0] & ~files[1]) {
+    //NORD NORD EST
+    if (knight >> 15 & ~ranks[0] & ~ranks[1] & ~files[0]) {
         move |= (knight >> 15);
     }
-
-    if (knight >> 10 & ~ranks[0] & ~ranks[1] & ~files[7] & ~files[6]) {
+    //NORD OVEST
+    if (knight >> 10 & ~ranks[0] & ~files[7] & ~files[6]) {
         move |= (knight >> 10);
     }
-
-    if (knight >> 6 & ~ranks[0] & ~ranks[1] & ~files[0] & ~files[1]) {
+    //NORD EST
+    if (knight >> 6 & ~ranks[0] & ~files[0] & ~files[1]) {
         move |= (knight >> 6);
     }
-
-    if (knight << 6 & ~ranks[7] & ~ranks[6] & ~files[7] & ~files[6]) {
+    //SUD OVEST
+    if (knight << 6 & ~ranks[7] & ~files[7] & ~files[6]) {
         move |= (knight << 6);
     }
-
-    if (knight << 10 & ~ranks[7] & ~ranks[6] & ~files[0] & ~files[1]) {
+    //SUD EST
+    if (knight << 10 & ~ranks[7] & ~files[0] & ~files[1]) {
         move |= (knight << 10);
     }
-
-    if (knight << 15 & ~ranks[7] & ~ranks[6] & ~files[7] & ~files[6]) {
+    //SUD SUD OVEST
+    if (knight << 15 & ~ranks[7] & ~ranks[6] & ~files[7]) {
         move |= (knight << 15);
     }
-
-    if (knight << 17 & ~ranks[7] & ~ranks[6] & ~files[0] & ~files[1]) {
+    //SUD SUD EST
+    if (knight << 17 & ~ranks[7] & ~ranks[6] & ~files[0]) {
         move |= (knight << 17);
     }
 
     return move;
 }
 
+/*
 int main() {
     Bitboard bitboard = 0ULL;
     Bitboard result = knightMove(bitboard, d4);
     printBitboard(result);
 
-    //CONTROLLARE VUOTO
     result = knightMove(bitboard, a7);
     printBitboard(result);
 
@@ -94,7 +95,7 @@ int main() {
     result = knightMove(bitboard, d7);
     printBitboard(result);
 
-    // CONTROLLARE VUOTO
     result = knightMove(bitboard, a8);
     printBitboard(result);
 }
+*/
