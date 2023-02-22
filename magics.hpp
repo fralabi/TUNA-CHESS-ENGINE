@@ -656,6 +656,7 @@ Bitboard get_rook_attacks(int square, Bitboard occupancy) {
 	return rook_attacks[square][occupancy];
 }
 
+/*
 int main() {
     //init_magics();
 
@@ -698,3 +699,4 @@ int main() {
     printBitboard(get_rook_attacks(d4, rook_occupancy));
 
 }
+*/
