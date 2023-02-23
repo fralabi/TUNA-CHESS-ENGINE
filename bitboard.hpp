@@ -28,7 +28,7 @@ enum {
  
 
 // DEFINE SIDES
-enum { black, white };
+enum { white, black };
 
 
 struct ChessBoard

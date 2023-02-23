@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int minimax (ChessBoard chessboard, int depth, long int alpha, long int beta, int side) {
+int minimax (ChessBoard chessboard, int depth, long int alpha, long int beta, int side, ChessBoard& position) {
 
     if (depth == 0) {
         return evaluate(chessboard);
@@ -20,7 +20,7 @@ int minimax (ChessBoard chessboard, int depth, long int alpha, long int beta, in
         generateMove(possibleMoves, chessboard, side);
 
         for (long int i = 0; i < possibleMoves.size(); i++) {
-            eva = minimax(possibleMoves[i], depth-1, alpha, beta, side);
+            eva = minimax(possibleMoves[i], depth-1, alpha, beta, side, position);
             maxEva = max(maxEva, eva);
             if (maxEva == eva) {
                 bestMove = possibleMoves[i];
@@ -32,9 +32,7 @@ int minimax (ChessBoard chessboard, int depth, long int alpha, long int beta, in
             }
         }
 
-        if (depth == 3)
-            printChessBoard(bestMove);
-
+        position = bestMove;
         return maxEva;
     } 
     else { //MINIMIZE PLAYER
@@ -45,9 +43,9 @@ int minimax (ChessBoard chessboard, int depth, long int alpha, long int beta, in
         generateMove(possibleMoves, chessboard, side);
 
         for (long int i=0; i < possibleMoves.size(); i++) {
-            eva = minimax(possibleMoves[i], depth-1, alpha, beta, side);
+            eva = minimax(possibleMoves[i], depth-1, alpha, beta, side, position);
             minEva = min(minEva, eva);
-            beta = min(beta, minEva);
+            beta = min(beta, eva);
 
             if (minEva == eva) {
                 bestMove = possibleMoves[i];
@@ -59,9 +57,7 @@ int minimax (ChessBoard chessboard, int depth, long int alpha, long int beta, in
         }
 
         
-        if (depth == 3)
-            printChessBoard(bestMove);
-
+        position = bestMove;
         return minEva;
     }
 }
@@ -70,6 +66,28 @@ int main() {
 
     ChessBoard first;
 	initializeChessBoard(first);
+    
+    ChessBoard position;
+    cout << minimax(first, 3, -8000000, 8000000, white, position) << endl;
 
-    cout << minimax(first, 3, -8000000, 8000000, white) << endl;
+    printChessBoard(position);
+
+    cout << minimax(position, 3, -8000000, 8000000, black, position) << endl;
+
+    printChessBoard(position);
+
+    cout << minimax(position, 3, -8000000, 8000000, white, position) << endl;
+
+    printChessBoard(position);
+
+    cout << minimax(position, 3, -8000000, 8000000, black, position) << endl;
+
+    printChessBoard(position);
+
+    cout << minimax(position, 3, -8000000, 8000000, white, position) << endl;
+
+    printChessBoard(position);
+
+
+
 }
