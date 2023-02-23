@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "move.hpp"
+#include "evaluate.hpp"
 
 using namespace std;
 
@@ -64,30 +64,40 @@ int minimax (ChessBoard chessboard, int depth, long int alpha, long int beta, in
 
 int main() {
 
-    ChessBoard first;
+    ChessBoard first; //POSIZIONE INIZIALE
 	initializeChessBoard(first);
     
-    ChessBoard position;
-    cout << minimax(first, 3, -8000000, 8000000, white, position) << endl;
+    ChessBoard position; //POSIZIONE PARZIALE
+    cout << minimax(first, 2, -8000000, 8000000, white, position) << endl;
 
     printChessBoard(position);
 
-    cout << minimax(position, 3, -8000000, 8000000, black, position) << endl;
+    cout << minimax(position, 2, -8000000, 8000000, black, position) << endl;
 
     printChessBoard(position);
 
-    cout << minimax(position, 3, -8000000, 8000000, white, position) << endl;
+    cout << minimax(position, 2, -8000000, 8000000, white, position) << endl;
 
     printChessBoard(position);
 
-    cout << minimax(position, 3, -8000000, 8000000, black, position) << endl;
+    cout << minimax(position, 2, -8000000, 8000000, black, position) << endl;
 
     printChessBoard(position);
 
-    cout << minimax(position, 3, -8000000, 8000000, white, position) << endl;
+    cout << minimax(position, 2, -8000000, 8000000, white, position) << endl;
 
     printChessBoard(position);
 
+    cout << minimax(position, 2, -8000000, 8000000, black, position) << endl;
 
+    printChessBoard(position);
+
+    cout << minimax(position, 2, -8000000, 8000000, white, position) << endl;
+
+    printChessBoard(position);
+
+    cout << minimax(position, 2, -8000000, 8000000, black, position) << endl;
+
+    printChessBoard(position);
 
 }

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "all.hpp"
+#include "magics.hpp"
 
 using namespace std;
 
@@ -32,8 +32,6 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
                 }
             }
         }
-
-        //printChessBoard(move.at(0));
 
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhiteRooks,i) > 0) {

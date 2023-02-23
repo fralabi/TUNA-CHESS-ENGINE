@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "bitboard.hpp"
+#include "king.hpp"
 
 using namespace std;
 

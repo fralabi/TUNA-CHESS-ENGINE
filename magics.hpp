@@ -5,13 +5,9 @@
 //  QUEEN = BISHOP | ROOK
 
 #include <bits/stdc++.h>
+#include "knight.hpp"
 
 using namespace std;
-
-// bits manipulations
-#define get_bit(bitboard, square) (bitboard & (1ULL << square))
-#define set_bit(bitboard, square) (bitboard |= (1ULL << square))
-#define pop_bit(bitboard, square) (get_bit(bitboard, square) ? (bitboard ^= (1ULL << square)) : 0)
 
 // MASKS
 Bitboard bishop_masks[64];
@@ -22,7 +18,7 @@ Bitboard bishop_attacks[64][512];
 Bitboard rook_attacks[64][4096];
 
 //SCELTA NEL CASO DI init_sliders_attack()
-enum { rook, bishop };
+enum { rooks, bishops };
 
 // ROOK OCCUPANCY BITS
 // NUMERO DELLE CASE ATTACCATE DA UNA TORRE IN QUELLA POSIZIONE, 
@@ -367,7 +363,7 @@ Bitboard find_magic(int square, int relevant_bits, int bishop) {
     Bitboard used_attacks[4096];
     
     // mask piece attack
-    Bitboard mask_attack = bishop ? mask_bishop_attacks(square) : mask_rook_attacks(square);
+    Bitboard mask_attack = bishops ? mask_bishop_attacks(square) : mask_rook_attacks(square);
 
     // occupancy variations
     int occupancy_variations = 1 << relevant_bits;
@@ -378,7 +374,7 @@ Bitboard find_magic(int square, int relevant_bits, int bishop) {
         occupancies[count] = set_occupancy(count, relevant_bits, mask_attack);
         
         // init attacks
-        attacks[count] = bishop ? bishop_attacks_on_the_fly(square, occupancies[count]) :
+        attacks[count] = bishops ? bishop_attacks_on_the_fly(square, occupancies[count]) :
                                   rook_attacks_on_the_fly(square, occupancies[count]);
     }
 
@@ -428,13 +424,13 @@ void init_magics()
   
   // loop over 64 board squares
   for(int square = 0; square < 64; square++)
-      printf("    0x%llxULL,\n", find_magic(square, rook_occupancy_bits[square], rook));
+      printf("    0x%llxULL,\n", find_magic(square, rook_occupancy_bits[square], rooks));
   
   printf("};\n\nconst Bitboard bishop_magics[64] = {\n");
   
   // loop over 64 board squares
   for(int square = 0; square < 64; square++)
-      printf("    0x%llxULL,\n", find_magic(square, bishop_occupancy_bits[square], bishop));
+      printf("    0x%llxULL,\n", find_magic(square, bishop_occupancy_bits[square], bishops));
   
   printf("};\n\n");
 }

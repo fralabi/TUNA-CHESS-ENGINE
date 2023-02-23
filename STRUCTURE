@@ -1,0 +1,15 @@
+bitboard.hpp
+    |
+pawn.hpp
+    |
+king.hpp
+    |
+knight.hpp
+    |
+magics.hpp
+    |
+move.hpp
+    |
+evaluate.hpp
+    |
+search.cpp

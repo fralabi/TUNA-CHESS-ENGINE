@@ -8,7 +8,7 @@ typedef long long unsigned int Bitboard;
 #define get_bit(bitboard, square) (bitboard & (1ULL << square))
 #define set_bit(bitboard, square) (bitboard |= (1ULL << square))
 #define pop_bit(bitboard, square) (get_bit(bitboard, square) ? (bitboard ^= (1ULL << square)) : 0)
-#define remove_bit(bitboard, square) (bitboard = bitboard ^ (1ULL << square))
+#define remove_bit(bitboard, square) (bitboard ^= (1ULL << square))
 
 
 // 1ULL << 2 -> 4  -> 100   -> c8
