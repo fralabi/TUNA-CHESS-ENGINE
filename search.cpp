@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//MINIMAX CON ALPHA-BETA PRUNING
 int minimax (ChessBoard chessboard, int depth, long int alpha, long int beta, int side, ChessBoard& position) {
 
     if (depth == 0) {

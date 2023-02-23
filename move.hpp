@@ -3,7 +3,8 @@
 
 using namespace std;
 
-// vector in cui metteremo tutte le possibili mosse usando il formato Chessboard
+// Vector in cui metteremo tutte le possibili mosse usando il formato ChessBoard
+
 void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
 
     Bitboard move2 = 0ULL;
@@ -12,6 +13,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
 
     if (!side) {
 
+        //PEDONE BIANCHI
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhitePawns,i) > 0) {
                 move2 = pawnMove(AllPieces(chessboard), AllBlackPieces(chessboard), i, side);
@@ -20,6 +22,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
                     temp = chessboard;
 
                     if(get_bit(move2,j) > 0) {
+                        //CONTROLLARR QUESTE OPERAZIONI SUI BIT
                         set_bit(temp.WhitePawns, j);
                         remove_bit(temp.WhitePawns, i);
                         remove_bit(temp.BlackQueens, j);
