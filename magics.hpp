@@ -17,9 +17,6 @@ Bitboard rook_masks[64];
 Bitboard bishop_attacks[64][512];
 Bitboard rook_attacks[64][4096];
 
-//SCELTA NEL CASO DI init_sliders_attack()
-enum { rooks, bishops };
-
 // ROOK OCCUPANCY BITS
 // NUMERO DELLE CASE ATTACCATE DA UNA TORRE IN QUELLA POSIZIONE, 
 // NON CONTIAMO GLI ESTREMI DI QUESTI PERCHE' NON POSSONO INTERFERIRE NEL PERCORSO
@@ -363,7 +360,7 @@ Bitboard find_magic(int square, int relevant_bits, int bishop) {
     Bitboard used_attacks[4096];
     
     // mask piece attack
-    Bitboard mask_attack = bishops ? mask_bishop_attacks(square) : mask_rook_attacks(square);
+    Bitboard mask_attack = 1 ? mask_bishop_attacks(square) : mask_rook_attacks(square);
 
     // occupancy variations
     int occupancy_variations = 1 << relevant_bits;
@@ -374,7 +371,7 @@ Bitboard find_magic(int square, int relevant_bits, int bishop) {
         occupancies[count] = set_occupancy(count, relevant_bits, mask_attack);
         
         // init attacks
-        attacks[count] = bishops ? bishop_attacks_on_the_fly(square, occupancies[count]) :
+        attacks[count] = 1 ? bishop_attacks_on_the_fly(square, occupancies[count]) :
                                   rook_attacks_on_the_fly(square, occupancies[count]);
     }
 
@@ -424,13 +421,13 @@ void init_magics()
   
   // loop over 64 board squares
   for(int square = 0; square < 64; square++)
-      printf("    0x%llxULL,\n", find_magic(square, rook_occupancy_bits[square], rooks));
+      printf("    0x%llxULL,\n", find_magic(square, rook_occupancy_bits[square], 0));
   
   printf("};\n\nconst Bitboard bishop_magics[64] = {\n");
   
   // loop over 64 board squares
   for(int square = 0; square < 64; square++)
-      printf("    0x%llxULL,\n", find_magic(square, bishop_occupancy_bits[square], bishops));
+      printf("    0x%llxULL,\n", find_magic(square, bishop_occupancy_bits[square], 1));
   
   printf("};\n\n");
 }
