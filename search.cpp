@@ -91,5 +91,17 @@ int main() {
 
     printChessBoard(position);
 
+        cout << minimax(position, 3, -8000000, 8000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << minimax(position, 3, -8000000, 8000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << minimax(position, 3, -8000000, 8000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
 
 }
