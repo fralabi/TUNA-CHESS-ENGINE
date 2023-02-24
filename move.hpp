@@ -14,11 +14,13 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
     if (side) {
 
         //PEDONE BIANCHI
-        for (int i=0; i<=48; i++) {
+        for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhitePawns,i) > 0) {
                 move2 = pawnMove(AllPieces(chessboard), AllBlackPieces(chessboard), i, side);
 
-                for (int j=0; j<=55; j++) {
+                //printBitboard(move2);
+
+                for (int j=0; j<=63; j++) {
                     temp = chessboard;
 
                     if(get_bit(move2,j) > 0) {
@@ -40,6 +42,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
             if(get_bit(chessboard.WhiteRooks,i) > 0) {
                 move2 = get_rook_attacks(i, AllPieces(chessboard));
 
+                //CONTROLLO SU CASE GIA' OCCUPATE DA PEZZI BIANCHI
                 for (int j=0; j<=63; j++) {
                     if(get_bit(move2,j) > 0) {
                         if (get_bit(AllWhitePieces(chessboard),j) > 0) {
@@ -47,6 +50,8 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
                         }
                     }
                 }
+
+                //MODIFICA IN CASO DI PRESA O DI SPOSTAMENTO DEL PEZZO
 
                 for (int j=0; j<=63; j++) {
                     temp = chessboard;
@@ -103,6 +108,8 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
                         }
                     }
                 }
+
+                //printBitboard(move2);
 
                 for (int j=0; j<=63; j++) {
                     temp = chessboard;
@@ -180,7 +187,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
     else {
 
         //BLACK
-        for (int i=8; i<=55; i++) {
+        for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.BlackPawns,i) > 0) {
                 move2 = pawnMove(AllPieces(chessboard), AllWhitePieces(chessboard), i, side);
 
@@ -323,7 +330,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.BlackKing,i) > 0) {
                 move2 = kingMove(AllPieces(chessboard), i);
-                
+
                 for (int j=0; j<=63; j++) {
                     if(get_bit(move2,j) > 0) {
                         if (get_bit(AllBlackPieces(chessboard),j) > 0) {
