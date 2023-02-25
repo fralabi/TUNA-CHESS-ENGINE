@@ -61,13 +61,13 @@ Bitboard pawnMove (Bitboard bitboard, Bitboard opponent, int square, int color) 
     if (color) { //WHITE
 
         //NORD-OVEST
-        if (pawn >> 7 & ~files[0] & ~bitboard) {
-            move |= (pawn >> 7 & opponent);
+        if (pawn >> 7 & ~files[0] & opponent) {
+            move |= (pawn >> 7);
         }
 
         //NORD-EST
-        if (pawn >> 9 & ~files[7] & ~bitboard){
-            move |= (pawn >> 9 & opponent);
+        if (pawn >> 9 & ~files[7] & opponent){
+            move |= (pawn >> 9);
         }
 
         //NORD
@@ -85,13 +85,13 @@ Bitboard pawnMove (Bitboard bitboard, Bitboard opponent, int square, int color) 
     else { //BLACK
 
         //SUD-EST
-        if (pawn << 7 & ~files[0] & ~bitboard) {
-            move |= (pawn << 7 & opponent);
+        if (pawn << 7 & ~files[0] & opponent) {
+            move |= (pawn << 7);
         }
 
         //SUD-OVEST
-        if (pawn << 9 & ~files[7] & ~bitboard){
-            move |= (pawn << 9 & opponent);
+        if (pawn << 9 & ~files[7] & opponent){
+            move |= (pawn << 9);
         }
 
         //SUD
@@ -111,8 +111,10 @@ Bitboard pawnMove (Bitboard bitboard, Bitboard opponent, int square, int color) 
 /* TRY FUNCTIONS
 int main() {
     Bitboard bitboard = 0ULL;
+    //set_bit(bitboard, b3);
     Bitboard result = pawnMove(bitboard, bitboard, a2, white);
 
+    printBitboard(bitboard);
     printBitboard(result);
 
     result = pawnMove(bitboard, bitboard, d7, black);
