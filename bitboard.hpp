@@ -4,17 +4,59 @@ using namespace std;
 
 typedef long long unsigned int Bitboard;
 
-// bits manipulations
-#define get_bit(bitboard, square) (bitboard & (1ULL << square))
-#define set_bit(bitboard, square) (bitboard |= (1ULL << square))
-#define pop_bit(bitboard, square) (get_bit(bitboard, square) ? (bitboard ^= (1ULL << square)) : 0)
-#define remove_bit(bitboard, square) (bitboard &= ~(1ULL << (square)))
+/*------!!!DEFINIZIONE FUNZIONI!!!------*/
+
+    // 1ULL == 1
+    // 1ULL << 2 -> 4;  in bit -> 100   -> c8;
+    // 1ULL << 4 -> 16; in bit -> 10000 -> e8;
 
 
-// 1ULL << 2 -> 4  -> 100   -> c8
-// 1ULL << 4 -> 16 -> 10000 -> e8
+    /*
+     * Nome: get_bit;
+     * Parametri: bitboard, square (casella da controllare)
+     * Descrizione: 
+     *  - (1ULL << square) inizializza lo square-esimo bit nella variabile 1ULL;
+     *  - bitboard & (1ULL << square) ritorna il bit-esimo dalla bitboard dopo l'esclusione tramite l'operatore and;
+     */
+    #define get_bit(bitboard, square) (bitboard & (1ULL << square))
 
-// DEFINE BOARD
+
+    /*
+     * Nome: set_bit;
+     * Parametri: bitboard, square (casella da controllare)
+     * Descrizione: 
+     *  - (1ULL << square) inizializza lo square-esimo bit nella variabile 1ULL;
+     *  - bitboard |= (1ULL << square) setta il bit-esimo nella bitboard tramite l'operatore di assegnazione or;
+     */
+    #define set_bit(bitboard, square) (bitboard |= (1ULL << square))
+
+
+    /*
+     * Nome: pop_bit;
+     * Parametri: bitboard, square (casella da controllare)
+     * Descrizione: 
+     * - get_bit(bitboard, square) richiama il bit su cui effettuare l'operazione
+     * - l'operatore ternario valuta se il bit sia ad 1 o 0. In caso di 1, ne esegue lo xor e ne ritorna la bitboard
+     *   in caso contrario, ritorna 0
+     */
+    #define pop_bit(bitboard, square) (get_bit(bitboard, square) ? (bitboard ^= (1ULL << square)) : 0)
+
+
+    /*
+     * Nome: remove_bit;
+     * Parametri: bitboard, square (casella da controllare)
+     * Descrizione: operazione di assegnazione-and alla bitboard con il bit selezionato negato 
+     */
+    #define remove_bit(bitboard, square) (bitboard &= ~(1ULL << (square)))
+
+/*-------------------------------------*/
+
+
+
+
+
+
+// Definizione struttura della scacchiera
 enum {
     a8, b8, c8, d8, e8, f8, g8, h8,  //  0  1  2  3  4  5  6  7
     a7, b7, c7, d7, e7, f7, g7, h7,  //  8  9 10 11 12 13 14 15
@@ -27,12 +69,15 @@ enum {
 };
  
 
-// DEFINE SIDES
+// Definzione fazioni
 enum { black, white };
 
 
 struct ChessBoard
 {
+    //Ogni pezzo avrà la sua personale bitboard per una visione singolare della mappa e della sua posizione
+
+
 	/* The white piece positions */
 	Bitboard WhitePawns;
 	Bitboard WhiteRooks;
@@ -51,17 +96,48 @@ struct ChessBoard
 
 };
 
-Bitboard AllWhitePieces(ChessBoard chessboard) {
-	return chessboard.WhitePawns | chessboard.WhiteRooks | chessboard.WhiteKnights | chessboard.WhiteBishops | chessboard.WhiteQueens | chessboard.WhiteKing;
-}
 
-Bitboard AllBlackPieces(ChessBoard chessboard) {
-	return chessboard.BlackPawns | chessboard.BlackRooks | chessboard.BlackKnights | chessboard.BlackBishops | chessboard.BlackQueens | chessboard.BlackKing;
-}
 
-Bitboard AllPieces(ChessBoard chessboard) {
-	return AllWhitePieces(chessboard) | AllBlackPieces(chessboard);
-}
+/*------!!!DEFINIZIONE FUNZIONI DI VISIONE!!!------*/
+
+    /*
+     * Nome: AllWhitePieces;
+     * Parametri: ChessBoard chessboard;
+     * Descrizione: 
+     * - Ritorna la scacchiera con le pedine bianche facendo un OR di tutte le posizioni delle pedine bianche;
+     */
+    Bitboard AllWhitePieces(ChessBoard chessboard) {
+        return chessboard.WhitePawns | chessboard.WhiteRooks | chessboard.WhiteKnights | chessboard.WhiteBishops | chessboard.WhiteQueens | chessboard.WhiteKing;
+    }
+
+
+    /*
+     * Nome: AllBlackPieces;
+     * Parametri: ChessBoard chessboard;
+     * Descrizione: 
+     * - Ritorna la scacchiera con le pedine nere facendo un OR di tutte le posizioni delle pedine nere;
+     */
+    Bitboard AllBlackPieces(ChessBoard chessboard) {
+        return chessboard.BlackPawns | chessboard.BlackRooks | chessboard.BlackKnights | chessboard.BlackBishops | chessboard.BlackQueens | chessboard.BlackKing;
+    }
+
+    /*
+     * Nome: AllPieces;
+     * Parametri: ChessBoard chessboard;
+     * Descrizione: 
+     * - Ritorna la scacchiera con le pedin  facendo un OR di tutte le posizioni delle pedine;
+     */
+    Bitboard AllPieces(ChessBoard chessboard) {
+        return AllWhitePieces(chessboard) | AllBlackPieces(chessboard);
+    }
+
+/*----------------------------------------------*/
+
+
+
+
+
+
 
 void printBitboard (Bitboard bitboard)
 {
