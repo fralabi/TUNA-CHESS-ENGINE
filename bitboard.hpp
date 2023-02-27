@@ -69,13 +69,14 @@ enum {
 };
  
 
-// Definzione fazioni
+// Definizione dei due colori
 enum { black, white };
 
 
 struct ChessBoard
 {
-    //Ogni pezzo avrà la sua personale bitboard per una visione singolare della mappa e della sua posizione
+    // Ogni tipologia di pezzo per ognuno dei due colori 
+    // avrà la sua personale bitboard per una visione singolare della mappa e della sua posizione
 
 
 	/* The white piece positions */
@@ -125,7 +126,7 @@ struct ChessBoard
      * Nome: AllPieces;
      * Parametri: ChessBoard chessboard;
      * Descrizione: 
-     * - Ritorna la scacchiera con le pedin  facendo un OR di tutte le posizioni delle pedine;
+     * - Ritorna la scacchiera con le pedine facendo un OR di tutte le posizioni delle pedine;
      */
     Bitboard AllPieces(ChessBoard chessboard) {
         return AllWhitePieces(chessboard) | AllBlackPieces(chessboard);
@@ -170,6 +171,12 @@ void printChessBoard (ChessBoard chessboard) {
 	printBitboard(AllPieces(chessboard));
 
 }
+
+/*
+* Nome: initializeChessBoard;
+* Parametri: chessboard (passato per riferimento)
+* Descrizione: inizializza la scacchiera alla posizione iniziale usuale degli scacchi 
+*/
 
 void initializeChessBoard (ChessBoard &chessboard) {
 
