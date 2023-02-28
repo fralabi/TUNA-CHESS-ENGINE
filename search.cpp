@@ -116,4 +116,100 @@ int main() {
 
     printChessBoard(position);
 
+    cout << "----------------------WHITE----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------BLACK----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------WHITE----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------BLACK----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------WHITE----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------BLACK----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------WHITE----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------BLACK----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------WHITE----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------BLACK----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------WHITE----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------BLACK----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------WHITE----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------BLACK----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------WHITE----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, white, position, 1) << endl;
+
+    printChessBoard(position);
+
+    cout << "----------------------BLACK----------------------" << endl;
+
+    cout << minimax(position, 3, -1000000000000, 1000000000000, black, position, 1) << endl;
+
+    printChessBoard(position);
+
 }
