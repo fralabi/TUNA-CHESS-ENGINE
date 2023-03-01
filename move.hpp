@@ -13,36 +13,40 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
 
     if (side) {
 
-        //PEDONE BIANCHI
+        //PEDONI BIANCHI
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhitePawns,i) > 0) {
                 move2 = pawnMove(AllPieces(chessboard), AllBlackPieces(chessboard), i, side);
 
-                //printBitboard(move2);
 
                 for (int j=0; j<=63; j++) {
                     temp = chessboard;
 
                     if(get_bit(move2,j) > 0) {
-                        //CONTROLLARR QUESTE OPERAZIONI SUI BIT
+                        //SETTO A 1 LA NUOVA POSZIONE DEL PEDONE
                         set_bit(temp.WhitePawns, j);
+                        //RIMUOVO DA WHITEOAWN LA PRECEDENTE POSIZONE DEL PEDONE
                         remove_bit(temp.WhitePawns, i);
+                        //RIMUOVO DA OGNUNA DELLE SEGUENTI BITBOARD L'EVENTUALE PEZZO CATTURATO
                         remove_bit(temp.BlackQueens, j);
                         remove_bit(temp.BlackRooks, j);
                         remove_bit(temp.BlackKnights, j);
                         remove_bit(temp.BlackBishops, j);
                         remove_bit(temp.BlackPawns, j);
+                        //AGGIUNGO LA NUOVA POSSIBILE POSIZIONE AL VETTORE
                         move.push_back(temp);
                     }
                 }
             }
         }
-
+        // TORRI BIANCHE
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhiteRooks,i) > 0) {
                 move2 = get_rook_attacks(i, AllPieces(chessboard));
 
                 //CONTROLLO SU CASE GIA' OCCUPATE DA PEZZI BIANCHI
+                //RIMUOVO DALLA POSSIBILI MOSSE QUELLE CHE AL LIMITE DELLO SPOSTAMENTO TROVANO UN PEZZO BIANCO 
+                //CHE NON PUO' ESSERE CATTURATO DA UN'ALTRO PEZZO BIANCO
                 for (int j=0; j<=63; j++) {
                     if(get_bit(move2,j) > 0) {
                         if (get_bit(AllWhitePieces(chessboard),j) > 0) {
@@ -50,8 +54,6 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
                         }
                     }
                 }
-
-                //MODIFICA IN CASO DI PRESA O DI SPOSTAMENTO DEL PEZZO
 
                 for (int j=0; j<=63; j++) {
                     temp = chessboard;
@@ -68,7 +70,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
                 }
             }
         }
-
+        // ALFIERI BIANCHI
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhiteBishops,i) > 0) {
                 move2 = get_bishop_attacks(i, AllPieces(chessboard));
@@ -97,6 +99,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
             }
         }
 
+        //CAVALLI BIANCHI
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhiteKnights,i) > 0) {
                 move2 = knightMove(AllPieces(chessboard), i);
@@ -126,7 +129,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
                 }
             }
         }
-
+        //REGINE BIANCHE
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhiteQueens,i) > 0) {
                 move2 = (get_bishop_attacks(i, AllPieces(chessboard)) | get_rook_attacks(i, AllPieces(chessboard)));
@@ -154,7 +157,7 @@ void generateMove (vector<ChessBoard>& move, ChessBoard chessboard, int side) {
                 }
             }
         }
-
+        //RE BIANCO
         for (int i=0; i<=63; i++) {
             if(get_bit(chessboard.WhiteKing,i) > 0) {
                 move2 = kingMove(AllPieces(chessboard), i);
